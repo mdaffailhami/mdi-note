@@ -30,12 +30,8 @@ router.post("/login", (req, res) => {
       console.log("\nLOGIN:\n", doc);
 
       req.session["user"] = doc["email"];
-      res.send(
-        `<script>
-          alert("Log in success!!!");
-          document.location.href = "/";
-        </script>`
-      );
+
+      res.redirect("/");
     });
   });
 });

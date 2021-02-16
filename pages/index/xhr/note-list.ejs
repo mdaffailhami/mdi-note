@@ -1,0 +1,43 @@
+<% notes.forEach((element,index) => { %>
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="<%= `heading${index}` %>">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="<%= `#collapse${index}` %>"
+        aria-expanded="false"
+        aria-controls="<%= `collapse${index}` %>"
+      >
+        <%= element.title %>
+      </button>
+    </h2>
+    <div
+      id="<%= `collapse${index}` %>"
+      class="accordion-collapse collapse"
+      aria-labelledby="<%= `heading${index}` %>"
+      data-bs-parent="#accordionExample"
+    >
+      <div class="accordion-body">
+        <div id="kolom-kiri" style="white-space: pre-line"><%= element.content %></div>
+        <div id="kolom-kanan">
+          <button onclick="document.location.href = '/update/<%= element._id %>'">Edit</button>
+
+          <button
+            onclick="(()=>{
+              const konfirmasi=confirm('Yakin ingin menghapus <%= element.title %>?');
+              
+              if(konfirmasi){
+                document.location.href='/delete/<%= element._id %>';
+              }
+            })()"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% }) %>
