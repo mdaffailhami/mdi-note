@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="/file?path=libraries/bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <title>MDI-Note</title>
+  </head>
+  <body>
+    <form action="" method="POST">
+      <input
+        type="text"
+        name="title"
+        id="title"
+        placeholder="Title"
+        autocomplete="off"
+        value="<%= note.title %>"
+      />
+      <br />
+      <textarea name="content" id="content" cols="30" rows="10" placeholder="Content" required>
+<%= note.content %></textarea
+      >
+      <br />
+      <!-- hidden input -->
+      <input type="hidden" name="__v" id="__v" value="<%= note.__v %>" />
+      <!-- /hidden input -->
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="/file?path=libraries/bootstrap-5.0.0-beta1-dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

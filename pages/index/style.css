@@ -1,0 +1,10 @@
+.accordion-body {
+  display: flex;
+}
+.accordion-body #kolom-kiri {
+  flex: 6;
+}
+
+.accordion-body #kolom-kanan {
+  flex: 1;
+}
