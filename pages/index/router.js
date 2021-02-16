@@ -19,8 +19,9 @@ router.get("/search", (req, res) => {
     res.redirect("/login");
     return;
   }
-
-  database.Note.find((err, docs) => {
+  console.log(req.session.user);
+  database.Note.find({ user: req.session.user }, (err, docs) => {
+    console.log(docs);
     if (err) throw err;
     // Jika keyword-nya kosong
     let notes = docs;
