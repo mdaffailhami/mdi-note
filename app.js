@@ -2,7 +2,7 @@
  * @author [Muhammad Daffa Ilhami]
  * @email [mdaffailhami@gmail.com]
  * @create date 2021-02-16 | 09:11:01
- * @modify date 2021-02-17 | 12:19:56
+ * @modify date 2021-02-17 | 22:09:17
  * @desc [Aplikasi Web untuk menyimpan catatan secara online]
  */
 
@@ -46,6 +46,11 @@ app.use(require("./pages/register/router.js"));
 app.use(require("./pages/create/router.js"));
 app.use(require("./pages/update/router.js"));
 // app.use(require("./pages/profile/router.js"));
+
+// Not found page
+app.use((req, res) => {
+  res.redirect("/");
+});
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log("App is running on port", port));
