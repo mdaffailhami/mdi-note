@@ -6,10 +6,24 @@
  * @desc [Aplikasi Web untuk menyimpan catatan secara online]
  */
 
+require("dotenv").config();
+
 const express = require("express");
 const session = require("express-session");
 
 const app = express();
+
+app.use((req, res, next) => {
+  // Ketika aplikasinya sudah berstatus production
+  if (process.env.APP_STATUS == "production") {
+    // Jika http maka auto redirect ke https
+    if (req.headers["x-forwarded-proto"] != "https") {
+      res.redirect(`https://${req.headers.host}${req.url}`);
+    }
+  } else {
+    next();
+  }
+});
 
 // Session
 app.use(
