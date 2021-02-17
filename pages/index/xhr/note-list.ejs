@@ -1,4 +1,22 @@
-<% notes.forEach((element,index) => { %>
+<% if (notes.length == 0) { %>
+<div
+  style="
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  "
+>
+  <h3 class="text-muted">Not found!!!</h3>
+  <img
+    src="https://i.pinimg.com/564x/71/e0/ea/71e0ea3e7cb9b47b51931ef4829f20b5.jpg"
+    alt=""
+    width="150px"
+    style="border-radius: 20px; border-bottom-left-radius: 0; border-bottom-right-radius: 0"
+  />
+</div>
+<% } else { %> <% notes.forEach((element,index) => { %>
 <div class="accordion" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="<%= `heading${index}` %>">
@@ -24,8 +42,9 @@
         <div id="kolom-kiri" style="white-space: pre-line"><%= element.content %></div>
         <div id="kolom-kanan">
           <!-- action button in mobile -->
-          <div id="three-dots-button" class="btn-group dropdown">
+          <div id="three-dots-button" class="btn-group dropstart">
             <img
+              data-bs-display="static"
               data-bs-toggle="dropdown"
               src="/file?path=pages/index/assets/images/three-dots-menu.jpg"
               alt=""
@@ -35,12 +54,12 @@
               <li onclick="document.location.href = '/update/<%= element._id %>'">Edit</li>
               <li
                 onclick='(()=>{
-                  const konfirmasi=confirm(`Yakin ingin menghapus "<%= element.title %>"?`);
-                  
-                  if(konfirmasi){
-                    document.location.href=`/delete/<%= element._id %>`;
-                  }
-                })()'
+                    const konfirmasi=confirm(`Yakin ingin menghapus "<%= element.title %>"?`);
+                    
+                    if(konfirmasi){
+                      document.location.href=`/delete/<%= element._id %>`;
+                    }
+                  })()'
               >
                 Delete
               </li>
@@ -60,12 +79,12 @@
               type="button"
               class="btn btn-primary"
               onclick='(()=>{
-                const konfirmasi=confirm(`Yakin ingin menghapus "<%= element.title %>"?`);
-                
-                if(konfirmasi){
-                  document.location.href=`/delete/<%= element._id %>`;
-                }
-              })()'
+                  const konfirmasi=confirm(`Yakin ingin menghapus "<%= element.title %>"?`);
+                  
+                  if(konfirmasi){
+                    document.location.href=`/delete/<%= element._id %>`;
+                  }
+                })()'
             >
               Delete
             </button>
@@ -75,4 +94,4 @@
     </div>
   </div>
 </div>
-<% }) %>
+<% }) %> <% } %>

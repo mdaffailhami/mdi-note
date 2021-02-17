@@ -9,6 +9,14 @@ function xhrNoteList() {
   xhr.onreadystatechange = () => {
     if (xhr.readyState == 4 && xhr.status == 200) {
       noteList.innerHTML = xhr.responseText;
+    } else {
+      noteList.innerHTML = `
+      <div style="margin-top: 100px; display: flex; justify-content: center; align-items: center;">
+        <div class="spinner-border text-primary" role="status" style="width: 2.5rem; height: 2.5rem">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      `;
     }
   };
 
