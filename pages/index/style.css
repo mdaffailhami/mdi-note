@@ -1,0 +1,89 @@
+.accordion-body {
+  display: flex;
+}
+.accordion-body #kolom-kiri {
+  word-wrap: break-word;
+  flex: 5;
+  width: 0;
+  /* background-color: aqua; */
+}
+
+.accordion-body #kolom-kanan {
+  width: fit-content;
+  /* flex: 1; */
+}
+
+.accordion-body #kolom-kiri {
+  padding-right: 12px;
+}
+
+#content-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+#content-bar #search {
+  border-radius: 5px;
+  border: 1px solid #0288d1;
+}
+
+/* desktop */
+@media (min-width: 766px) {
+  #content {
+    width: 68%;
+    margin: 0 auto;
+  }
+
+  #content #content-bar {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  #kolom-kanan #three-dots-button {
+    display: none;
+  }
+}
+
+/* mobile */
+@media (max-width: 765px) {
+  #kolom-kanan #action-button {
+    display: none;
+  }
+
+  #kolom-kanan #three-dots-button {
+    float: right;
+  }
+  #kolom-kanan #three-dots-button:hover {
+    cursor: pointer;
+  }
+
+  #kolom-kanan #three-dots-button ul {
+    min-width: 0;
+  }
+  #kolom-kanan #three-dots-button ul:hover {
+    cursor: default;
+  }
+
+  #kolom-kanan #three-dots-button li {
+    color: #fff;
+  }
+  #kolom-kanan #three-dots-button li:hover {
+    cursor: pointer;
+  }
+  #kolom-kanan #three-dots-button li:first-of-type {
+    margin-bottom: 8px;
+  }
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+#footer div span {
+  color: #fff;
+}

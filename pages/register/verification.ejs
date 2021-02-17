@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="/file?path=libraries/bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link href="/file?path=pages/register/style.css" rel="stylesheet" />
+  </head>
+  <body class="text-center">
+    <main class="form-signin">
+      <form action="/register/check-verification" method="POST">
+        <p>Your verification code has been sent to <%= data.email %></p>
+        <h1 class="h3 mb-3 fw-normal">Please enter your verification code</h1>
+        <input
+          type="text"
+          name="input_verification_code"
+          id="input_verification_code"
+          class="form-control"
+          placeholder="Verification code"
+          required
+          autofocus
+        />
+        <!-- hidden input -->
+        <input
+          type="hidden"
+          name="sent_verification_code"
+          id="sent_verification_code"
+          value="<%= verificationCode %>"
+        />
+        <input type="hidden" name="email" id="email" value="<%= data['email'] %>" />
+        <input type="hidden" name="password" id="password" value="<%= data['password'] %>" />
+        <!-- /hidden input -->
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Verify</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+      </form>
+    </main>
+  </body>
+</html>
