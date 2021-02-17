@@ -1,3 +1,8 @@
+.accordion-button {
+  background-color: #f7f7f7;
+  overflow: hidden;
+}
+
 .accordion-body {
   display: flex;
 }
@@ -5,12 +10,10 @@
   word-wrap: break-word;
   flex: 5;
   width: 0;
-  /* background-color: aqua; */
 }
 
 .accordion-body #kolom-kanan {
   width: fit-content;
-  /* flex: 1; */
 }
 
 .accordion-body #kolom-kiri {
