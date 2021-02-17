@@ -2,11 +2,19 @@
   display: flex;
 }
 .accordion-body #kolom-kiri {
+  word-wrap: break-word;
   flex: 5;
+  width: 0;
+  /* background-color: aqua; */
 }
 
 .accordion-body #kolom-kanan {
   width: fit-content;
+  /* flex: 1; */
+}
+
+.accordion-body #kolom-kiri {
+  padding-right: 12px;
 }
 
 #content-bar {
