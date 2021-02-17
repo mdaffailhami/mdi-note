@@ -6,8 +6,6 @@
  * @desc [Aplikasi Web untuk menyimpan catatan secara online]
  */
 
-require("dotenv").config();
-
 const express = require("express");
 const session = require("express-session");
 
