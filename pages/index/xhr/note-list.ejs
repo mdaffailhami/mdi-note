@@ -9,6 +9,7 @@
         data-bs-target="<%= `#collapse${index}` %>"
         aria-expanded="false"
         aria-controls="<%= `collapse${index}` %>"
+        style="font-size: 17px"
       >
         <%= element.title %>
       </button>
@@ -22,19 +23,53 @@
       <div class="accordion-body">
         <div id="kolom-kiri" style="white-space: pre-line"><%= element.content %></div>
         <div id="kolom-kanan">
-          <button onclick="document.location.href = '/update/<%= element._id %>'">Edit</button>
+          <!-- action button in mobile -->
+          <div id="three-dots-button" class="btn-group dropdown">
+            <img
+              data-bs-toggle="dropdown"
+              src="/file?path=pages/index/assets/images/three-dots-menu.jpg"
+              alt=""
+              width="16"
+            />
+            <ul class="dropdown-menu p-2 text-left bg-primary">
+              <li onclick="document.location.href = '/update/<%= element._id %>'">Edit</li>
+              <li
+                onclick='(()=>{
+                  const konfirmasi=confirm(`Yakin ingin menghapus "<%= element.title %>"?`);
+                  
+                  if(konfirmasi){
+                    document.location.href=`/delete/<%= element._id %>`;
+                  }
+                })()'
+              >
+                Delete
+              </li>
+            </ul>
+          </div>
 
-          <button
-            onclick="(()=>{
-              const konfirmasi=confirm('Yakin ingin menghapus <%= element.title %>?');
-              
-              if(konfirmasi){
-                document.location.href='/delete/<%= element._id %>';
-              }
-            })()"
-          >
-            Delete
-          </button>
+          <!-- action button in desktop -->
+          <div id="action-button">
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="document.location.href = '/update/<%= element._id %>'"
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick='(()=>{
+                const konfirmasi=confirm(`Yakin ingin menghapus "<%= element.title %>"?`);
+                
+                if(konfirmasi){
+                  document.location.href=`/delete/<%= element._id %>`;
+                }
+              })()'
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>

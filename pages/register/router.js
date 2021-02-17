@@ -104,7 +104,7 @@ router.post("/register/check-verification", (req, res) => {
 
           res.send(
             `<script>
-              alert("Registration is successful!!!");
+              alert("Registration success!!!");
               document.location.href = "/login";
             </script>`
           );

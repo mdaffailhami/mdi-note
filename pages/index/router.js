@@ -1,4 +1,5 @@
 const express = require("express");
+const session = require("express-session");
 const database = require("../../databases/mdi-note.js");
 
 const router = express.Router();
@@ -10,7 +11,24 @@ router.get("/", (req, res) => {
     return;
   }
 
-  res.render(`${__dirname}/index.ejs`);
+  res.render(`${__dirname}/index.ejs`, {
+    userEmail: req.session.user,
+  });
+});
+
+router.get("/delete/:_id", (req, res) => {
+  // Cek jika session user tidak ada
+  if (req.session["user"] == undefined) {
+    res.redirect("/login");
+    return;
+  }
+
+  database.Note.findByIdAndDelete(req.params["_id"], (err, doc) => {
+    if (err) throw err;
+    console.log("\nDELETE:\n", doc);
+
+    res.redirect("/");
+  });
 });
 
 router.get("/search", (req, res) => {
@@ -19,9 +37,8 @@ router.get("/search", (req, res) => {
     res.redirect("/login");
     return;
   }
-  console.log(req.session.user);
+
   database.Note.find({ user: req.session.user }, (err, docs) => {
-    console.log(docs);
     if (err) throw err;
     // Jika keyword-nya kosong
     let notes = docs;
@@ -42,19 +59,9 @@ router.get("/search", (req, res) => {
   });
 });
 
-router.get("/delete/:_id", (req, res) => {
-  // Cek jika session user tidak ada
-  if (req.session["user"] == undefined) {
-    res.redirect("/login");
-    return;
-  }
-
-  database.Note.findByIdAndDelete(req.params["_id"], (err, doc) => {
-    if (err) throw err;
-    console.log("\nDELETE:\n", doc);
-
-    res.redirect("/");
-  });
+router.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/login");
 });
 
 module.exports = router;

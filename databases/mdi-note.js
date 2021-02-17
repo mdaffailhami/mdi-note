@@ -39,7 +39,7 @@ const Note = mongoose.model(
     },
     title: {
       type: String,
-      required: false,
+      required: true,
     },
     content: {
       type: String,

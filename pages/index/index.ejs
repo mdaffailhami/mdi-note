@@ -15,12 +15,62 @@
     <link rel="stylesheet" href="/file?path=pages/index/style.css" />
   </head>
   <body>
-    <input type="text" name="search" id="search" autofocus placeholder="Search" />
-    <button type="button" class="btn btn-primary" onclick="document.location.href = '/create';">
-      Tambah catatan
-    </button>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><strong>MDI-Note</strong></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/profile/<%= userEmail %>">Profile</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link active" href="/logout">Log out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- /navbar -->
 
-    <div id="note-list"></div>
+    <!-- content -->
+    <div id="content">
+      <!-- content-bar -->
+      <div id="content-bar">
+  
+        <input type="text" name="search" id="search" placeholder=" Search" />
+        <button type="button" class="btn btn-primary" onclick="document.location.href = '/create';">
+          Add note
+        </div>
+      <!-- /content-bar -->
+      </button>
+      <div id="note-list">
+        <!-- Note list -->
+      </div>
+    </div>
+    <!-- /content -->
+
+    <!-- footer -->
+    <footer id="footer" class="bg-primary">
+      <div class="text-muted text-center">
+        <span>&copy;16/02/2021 built by Daffa Ilhami</span>
+      </div>
+    </footer>
+    <!-- <footer class="footer mt-auto py-3 bg-light" style="position: absolute; bottom: 0;">
+      <p class="text-muted" style="text-align: center;">&copy;2021</p>
+    </footer> -->
+    <!-- /footer -->
 
     <!-- Bootstrap JavaScript -->
     <script src="/file?path=libraries/bootstrap-5.0.0-beta1-dist/js/bootstrap.bundle.min.js"></script>
