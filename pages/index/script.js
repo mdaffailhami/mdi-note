@@ -94,9 +94,9 @@ function getNote() {
                           note-_id="${element._id}"
                           note-title="${element.title}"
                           note-content="${element.content}"
-                        ></a>
+                        >
                           Edit
-                        </button>
+                        </button></a>
                         <button
                           type="button"
                           class="delete-button btn btn-primary"
