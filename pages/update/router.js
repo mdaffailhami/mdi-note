@@ -5,13 +5,7 @@ const database = require("../../databases/mdi-note.js");
 const router = express.Router();
 
 router.get("/update/:_id", (req, res) => {
-  // Cek jika session user tidak ada
-  if (req.session["user"] == undefined) {
-    res.redirect("/login");
-    return;
-  }
-
-  // Cara Note yg ingin user edit
+  // Cari Note yg ingin user edit
   database.Note.findById(req.params["_id"], (err, doc) => {
     if (err) throw err;
 

@@ -51,15 +51,17 @@
               width="16"
             />
             <ul class="dropdown-menu p-2 text-left bg-primary">
-              <li onclick="document.location.href = '/update/<%= element._id %>'">Edit</li>
               <li
-                onclick='(()=>{
-                    const konfirmasi=confirm(`Yakin ingin menghapus "<%= element.title %>"?`);
-                    
-                    if(konfirmasi){
-                      document.location.href=`/delete/<%= element._id %>`;
-                    }
-                  })()'
+                class="update-button"
+                note-_id="<%= element._id %>"
+                onclick="document.location.href = '/update/<%= element._id %>'"
+              >
+                Edit
+              </li>
+              <li
+                class="delete-button"
+                note-_id="<%= element._id %>"
+                note-title="<%= element.title %>"
               >
                 Delete
               </li>
@@ -70,21 +72,16 @@
           <div id="action-button">
             <button
               type="button"
-              class="btn btn-primary"
+              class="update-button btn btn-primary"
               onclick="document.location.href = '/update/<%= element._id %>'"
             >
               Edit
             </button>
             <button
               type="button"
-              class="btn btn-primary"
-              onclick='(()=>{
-                  const konfirmasi=confirm(`Yakin ingin menghapus "<%= element.title %>"?`);
-                  
-                  if(konfirmasi){
-                    document.location.href=`/delete/<%= element._id %>`;
-                  }
-                })()'
+              class="delete-button btn btn-primary"
+              note-_id="<%= element._id %>"
+              note-title="<%= element.title %>"
             >
               Delete
             </button>
