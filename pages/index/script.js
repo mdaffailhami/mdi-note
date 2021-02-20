@@ -156,7 +156,8 @@ function deleteNote() {
           if (xhr.readyState == 4) {
             const response = JSON.parse(xhr.response);
             if (response.status == "success") {
-              document.location.href = "/";
+              getNote();
+              // document.location.href = "/";
             } else {
               alert("DELETE Failed!!!");
             }

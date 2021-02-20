@@ -11,7 +11,7 @@ router.get("/api/note", (req, res) => {
     let notes = docs;
 
     // Jika keyword-nya TIDAK kosong
-    if (req.query["keyword"] != undefined || req.query["keyword"] == "") {
+    if (req.query["keyword"] != undefined) {
       notes = [];
       for (let i = 0; i < docs.length; i++) {
         if (docs[i]["title"].toUpperCase().includes(req.query["keyword"].toUpperCase())) {
@@ -27,7 +27,7 @@ router.get("/api/note", (req, res) => {
 router.post("/api/note", (req, res) => {
   req.on("data", (chunk) => {
     const data = querystring.parse(String(chunk));
-    console.log(data);
+
     database.Note.create(
       {
         user: req.session["user"],
@@ -50,22 +50,23 @@ router.post("/api/note", (req, res) => {
 
 router.delete("/api/note", (req, res) => {
   database.Note.findByIdAndDelete(req.query["_id"], (err, doc) => {
-    if (err || req.query["_id"] == undefined || req.query["_id"] == "") {
+    if (err || req.query["_id"] == undefined) {
       res.json({ status: "failed" });
       return;
     }
     console.log("\nDELETE:", doc);
 
-    res.json({ status: "success" });
+    res.json({ status: "success", note: doc });
   });
 });
 
 router.put("/api/note", (req, res) => {
   req.on("data", (chunk) => {
     const data = querystring.parse(String(chunk));
-
+    console.log(req.query._id);
     database.Note.findById(req.query["_id"], (err, doc) => {
-      if (err) {
+      console.log("masuk lurr");
+      if (err || req.query["_id"] == undefined) {
         res.json({ status: "failed" });
         return;
       }
