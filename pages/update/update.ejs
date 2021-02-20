@@ -19,7 +19,7 @@
   </head>
   <body class="text-center">
     <main class="form-signin">
-      <form action="" method="POST">
+      <form action="javascript:undefined">
         <h1>MDI-NOTE</h1>
         <hr />
         <h1 class="h3 mb-3 fw-normal">Edit note</h1>
@@ -46,10 +46,16 @@
 <%= note.content %></textarea
         >
         <!-- hidden input -->
-        <input type="hidden" name="__v" id="__v" value="<%= note.__v %>" />
+        <!-- <input type="hidden" name="__v" id="__v" value="<%= note.__v %>" /> -->
         <!-- /hidden input -->
 
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Save</button>
+        <button
+          class="w-100 btn btn-lg btn-primary"
+          note-_id="<%= note._id %>"
+          note-__v="<%= note.__v %>"
+        >
+          Save
+        </button>
         <hr />
         <p class="mt-5 mb-3 text-muted">&copy;2021</p>
       </form>

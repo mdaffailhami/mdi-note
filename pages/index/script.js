@@ -163,7 +163,7 @@ function deleteNote() {
           }
         };
 
-        xhr.open("DELETE", `/api/note/${attribute._id}`);
+        xhr.open("DELETE", `/api/note?_id=${attribute._id}`);
         xhr.send();
       }
     });

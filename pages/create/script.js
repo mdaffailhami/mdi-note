@@ -4,8 +4,6 @@ submitButton.addEventListener("click", () => {
   const formData = {
     title: document.querySelector("input").value,
     content: document.querySelector("textarea").value,
-    __v: document.querySelector("button").getAttribute("note-__v"),
-    _id: document.querySelector("button").getAttribute("note-_id"),
   };
 
   const xhr = new XMLHttpRequest();
@@ -20,6 +18,8 @@ submitButton.addEventListener("click", () => {
     }
   };
 
-  xhr.open("PUT", `/api/note?_id=${formData._id}`);
+  xhr.open("POST", "/api/note");
+  //Send the proper header information along with the request
+  // http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.send(`title=${formData.title}&content=${formData.content}`);
 });

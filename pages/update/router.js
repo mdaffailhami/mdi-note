@@ -15,25 +15,4 @@ router.get("/update/:_id", (req, res) => {
   });
 });
 
-router.post("/update/:_id", (req, res) => {
-  req.on("data", (chunk) => {
-    const data = querystring.parse(String(chunk));
-
-    database.Note.findByIdAndUpdate(
-      req.params["_id"],
-      {
-        title: data["title"],
-        content: data["content"],
-        __v: Number(data["__v"]) + 1,
-      },
-      (err, doc) => {
-        if (err) throw err;
-        console.log("\nUPDATE:", doc);
-
-        res.redirect("/");
-      }
-    );
-  });
-});
-
 module.exports = router;

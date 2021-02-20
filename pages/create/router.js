@@ -14,24 +14,4 @@ router.get("/create", (req, res) => {
   res.render(`${__dirname}/create.ejs`);
 });
 
-router.post("/create", (req, res) => {
-  req.on("data", (chunk) => {
-    const data = querystring.parse(String(chunk));
-
-    database.Note.create(
-      {
-        user: req.session["user"],
-        title: data["title"],
-        content: data["content"],
-      },
-      (err, doc) => {
-        if (err) throw err;
-        console.log("\nCREATE:\n", doc);
-
-        res.redirect("/");
-      }
-    );
-  });
-});
-
 module.exports = router;

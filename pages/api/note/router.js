@@ -1,3 +1,4 @@
+const querystring = require("querystring");
 const database = require("../../../databases/mdi-note.js");
 const express = require("express");
 
@@ -10,7 +11,7 @@ router.get("/api/note", (req, res) => {
     let notes = docs;
 
     // Jika keyword-nya TIDAK kosong
-    if (req.query["keyword"].length > 0) {
+    if (req.query["keyword"] != undefined || req.query["keyword"] == "") {
       notes = [];
       for (let i = 0; i < docs.length; i++) {
         if (docs[i]["title"].toUpperCase().includes(req.query["keyword"].toUpperCase())) {
@@ -23,12 +24,70 @@ router.get("/api/note", (req, res) => {
   });
 });
 
-router.delete("/api/note/:_id", (req, res) => {
-  database.Note.findByIdAndDelete(req.params["_id"], (err, doc) => {
-    if (err) throw err;
-    console.log("\nDELETE:\n", doc);
+router.post("/api/note", (req, res) => {
+  req.on("data", (chunk) => {
+    const data = querystring.parse(String(chunk));
+    console.log(data);
+    database.Note.create(
+      {
+        user: req.session["user"],
+        title: data["title"],
+        content: data["content"],
+      },
+      (err, doc) => {
+        if (err) {
+          res.json({ status: "failed" });
+          return;
+        }
+        console.log("\nCREATE:", doc);
+
+        // res.redirect("/");
+        res.json({ status: "success", note: doc });
+      }
+    );
+  });
+});
+
+router.delete("/api/note", (req, res) => {
+  database.Note.findByIdAndDelete(req.query["_id"], (err, doc) => {
+    if (err || req.query["_id"] == undefined || req.query["_id"] == "") {
+      res.json({ status: "failed" });
+      return;
+    }
+    console.log("\nDELETE:", doc);
 
     res.json({ status: "success" });
+  });
+});
+
+router.put("/api/note", (req, res) => {
+  req.on("data", (chunk) => {
+    const data = querystring.parse(String(chunk));
+
+    database.Note.findById(req.query["_id"], (err, doc) => {
+      if (err) {
+        res.json({ status: "failed" });
+        return;
+      }
+
+      database.Note.updateOne(
+        { _id: doc["_id"] },
+        {
+          title: data["title"],
+          content: data["content"],
+          __v: doc["__v"] + 1,
+        },
+        (err) => {
+          if (err) {
+            res.json({ status: "failed" });
+            return;
+          }
+          console.log("\nUPDATE:", doc);
+
+          res.json({ status: "success", note: doc });
+        }
+      );
+    });
   });
 });
 
