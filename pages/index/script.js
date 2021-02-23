@@ -14,20 +14,20 @@ function getNote() {
         if (response.notes.length == 0) {
           noteList.innerHTML = `
             <div
+            id="not-found"
               style="
-                margin-top: 50px;
+                margin-top: 40px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
               "
             >
-              <h3 class="text-muted">Not found!!!</h3>
+              <h3 class="text-muted">Item not found!!!</h3>
               <img
-                src="https://i.pinimg.com/564x/71/e0/ea/71e0ea3e7cb9b47b51931ef4829f20b5.jpg"
+                src="file?path=pages/index/assets/images/not-found.gif"
                 alt=""
-                width="150px"
-                style="border-radius: 20px; border-bottom-left-radius: 0; border-bottom-right-radius: 0"
+                style="border-radius: 10px; margin-top: 5px;"
               />
             </div>
           `;

@@ -46,6 +46,10 @@
   #kolom-kanan #three-dots-button {
     display: none;
   }
+
+  #not-found img {
+    width: 50%;
+  }
 }
 
 /* mobile */
@@ -76,6 +80,10 @@
   }
   #kolom-kanan #three-dots-button li:first-of-type {
     margin-bottom: 8px;
+  }
+
+  #not-found img {
+    width: 75%;
   }
 }
 
