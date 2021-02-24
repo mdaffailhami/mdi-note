@@ -29,6 +29,9 @@ router.post("/login", (req, res) => {
 
       console.log("\nLOGIN:\n", doc);
 
+      if (data["remember_me"] == "on") {
+        res.cookie("lol", doc["_id"], { maxAge: 123456789100 });
+      }
       req.session["user"] = doc["email"];
 
       res.redirect("/");
